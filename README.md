@@ -100,6 +100,39 @@ Halaman Laravel welcome page atau tampilan yang kamu buat di `resources/views` a
 
 ---
 
+## 🗄️ Database Schema
+
+Setelah menjalankan migrasi, database `ticktick_db` berisi tabel berikut:
+
+| Tabel                  | Fungsi                                                                 |
+|-------------------------|------------------------------------------------------------------------|
+| `users`                | Menyimpan data akun pengguna (autentikasi).                            |
+| `sessions`             | Menyimpan sesi login aktif.                                            |
+| `password_reset_tokens`| Token untuk reset password.                                            |
+| `migrations`           | Catatan migrasi yang sudah dijalankan.                                 |
+| `jobs`                 | Queue jobs Laravel.                                                    |
+| `failed_jobs`          | Queue jobs yang gagal.                                                 |
+| `job_batches`          | Batch job untuk queue.                                                 |
+| `cache`                | Cache aplikasi.                                                        |
+| `cache_locks`          | Lock untuk cache.                                                      |
+| `my_tasks`             | Tabel custom untuk menyimpan daftar tugas pengguna.                    |
+
+### 📊 Contoh Struktur Tabel `my_tasks`
+
+```sql
+CREATE TABLE `my_tasks` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) NOT NULL,
+  `description` text,
+  `status` enum('pending','done') DEFAULT 'pending',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
+```
+
+---
+
 ## 📜 Lisensi
 Proyek ini dibuat untuk keperluan praktikum. Bebas digunakan untuk belajar dan pengembangan lebih lanjut.
 ```
